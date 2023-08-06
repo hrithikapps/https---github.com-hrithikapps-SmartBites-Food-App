@@ -1,0 +1,32 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "Namaste First Project",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hrithikapps/Namaste-React.git"
+  },
+  "author": "Kumar Hrithik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hrithikapps/Namaste-React/issues"
+  },
+  "homepage": "https://github.com/hrithikapps/Namaste-React#readme",
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "parcel": "^2.9.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "generate-gitignore": "^0.2.6",
+    "git-init": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

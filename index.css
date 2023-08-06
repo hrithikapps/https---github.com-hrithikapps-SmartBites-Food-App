@@ -1,0 +1,66 @@
+* {
+  font-family: sans-serif;
+}
+.logo {
+  width: 7vw;
+  height: 15vh;
+  border-radius: 5rem;
+}
+.nav-items {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid grey;
+  align-items: center;
+  padding: 0.5rem;
+  /* position: sticky;
+  top: 0px; */
+}
+.nav-items > ul {
+  display: flex;
+}
+.nav-items > ul > li {
+  list-style-type: none;
+  margin-left: 1rem;
+  font-size: larger;
+}
+.cards {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  width: 15rem;
+  height: 19rem;
+  border-radius: 0.5rem;
+  border: 1px solid lightgrey;
+  line-height: 0.9rem;
+}
+.cards:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  transition: all ease-in-out 0.3s;
+}
+.cardImg {
+  width: 15rem;
+  height: 10rem;
+  border-radius: 0.5rem;
+}
+.RestaurantCards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+h4 {
+  width: -moz-fit-content;
+  width: fit-content;
+  /* margin-bottom: 0rem; */
+}
+.cuisines {
+  font-size: 0.8rem;
+  color: grey;
+  margin-top: 0.3rem;
+  margin-bottom: 0px;
+}
+.ratingsAndCostForTwo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0px;
+}
