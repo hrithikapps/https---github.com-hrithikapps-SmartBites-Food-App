@@ -3,7 +3,7 @@ export const CDN_IMG_ID =
 
 export const RestaurantData = [
   {
-    info: {
+    data: {
       id: "155772",
       name: "Best Belgian Waffle (FC Road)",
       cloudinaryImageId: "dsymxbyuhfxjajhutfwn",
@@ -91,7 +91,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "227535",
       name: "Cake Paradise",
       cloudinaryImageId: "ivankgfavqmj7vdzgbas",
@@ -182,7 +182,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "42581",
       name: "Burger King",
       cloudinaryImageId: "e33e1d3ba7d6b2bb0d45e1001b731fcf",
@@ -266,7 +266,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "355999",
       name: "Hyderabadi Biryani Express",
       cloudinaryImageId: "mssc5c6yxi7yhorqzofj",
@@ -353,7 +353,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "23722",
       name: "McDonald's",
       cloudinaryImageId: "ee5f8e06b300efc07c9fe3f4df40dfc4",
@@ -440,7 +440,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "225737",
       name: "S & B The Cake Factory",
       cloudinaryImageId: "hnbxdrtysyeizs1jtzpj",
@@ -530,7 +530,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "683013",
       name: "Burgerino",
       cloudinaryImageId: "512de94363c22a9db4d8beb84268716f",
@@ -618,7 +618,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "654891",
       name: "Nandu's Paratha",
       cloudinaryImageId: "6067b9c8fcab00e28e4423a4c4cbeaf6",
@@ -715,7 +715,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "5624",
       name: "Subway",
       cloudinaryImageId: "1ace5fa65eff3e1223feb696c956b38b",
@@ -799,7 +799,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "507088",
       name: "Zomoz - The Momo Company",
       cloudinaryImageId: "gor298mibjonxmplyjqh",
@@ -886,7 +886,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "229285",
       name: "The Biryani Life",
       cloudinaryImageId: "fwgd3rndmxpsqsxh6phr",
@@ -978,7 +978,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "659799",
       name: "Wendy's Burgers",
       cloudinaryImageId: "537944eb7977193d7166fbe5484b2cad",
@@ -1071,7 +1071,7 @@ export const RestaurantData = [
     },
   },
   {
-    info: {
+    data: {
       id: "263837",
       name: "Shravan Specials by Lunchbox",
       cloudinaryImageId: "rctnc6djmyj9icc02pp7",
