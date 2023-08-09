@@ -43,6 +43,12 @@ const Body = () => {
     setFilteredRestaurant(json?.data?.success?.cards[0]?.favourite?.cards);
     setAllRestaurants(json?.data?.success?.cards[0]?.favourite?.cards);
   }
+
+  //Not rendering the component (Early Return)
+  if (!allRestaturants) {
+    return null;
+  }
+
   //Returning shimmer Component before the data is fetched
   return allRestaturants.length === 0 ? (
     <Shimmer />
