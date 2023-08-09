@@ -1,22 +1,32 @@
 import { RestaurantCards } from "../components/RestaurantCards";
-import RestaurantData from "./constants";
+// import RestaurantData from "./constants";
 import { useState, useEffect } from "react";
 import { Shimmer } from "./Shimmer";
 
-const filterData = (searchText, restaturants) => {
-  const Data = restaturants.filter((restaurant) => {
-    // console.warn(searchText+"SearchText")
-    restaurant?.data?.name?.includes(searchText);
-    // console.warn(restaurant.info.name);
+const filterData = (searchText, allRestaturants) => {
+  console.log(allRestaturants);
+  const data = allRestaturants.filter((restaurant) => {
+    const resName = restaurant?.data?.name
+      ?.toLowerCase()
+      .includes(searchText.toLowerCase());
+    return resName;
   });
-  console.warn(Data + "Filtered");
-  return Data;
+  // console.log(data + " inside filter data");
+  return data;
 };
 
+// function filterData(searchText, restaurant) {
+//   const filterData = restaurant.filter((restaurants) =>
+//     restaurants?.data.name?.toLowerCase().includes(searchText.toLowerCase())
+//   );
+//   return filterData;
+// }
+
 const Body = () => {
-  const [restaturants, setRestaurants] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const [allRestaturants, setAllRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
-  // console.warn(restaturants);
+  // console.log("Consoling");
 
   useEffect(() => {
     getRestaurants();
@@ -29,11 +39,12 @@ const Body = () => {
       "https://www.swiggy.com/dapi/homepage/getCards?lat=18.5362084&lng=73.8939748"
     );
     const json = await data.json();
-    console.warn(json?.data?.success?.cards[0]?.favourite?.cards);
-    setRestaurants(json?.data?.success?.cards[0]?.favourite?.cards);
+    // console.warn(json?.data?.success?.cards[0]?.favourite?.cards);
+    setFilteredRestaurant(json?.data?.success?.cards[0]?.favourite?.cards);
+    setAllRestaurants(json?.data?.success?.cards[0]?.favourite?.cards);
   }
   //Returning shimmer Component before the data is fetched
-  return restaturants.length === 0 ? (
+  return allRestaturants.length === 0 ? (
     <Shimmer />
   ) : (
     <>
@@ -50,17 +61,16 @@ const Body = () => {
           className="searchButton"
           onClick={() => {
             //Need to filter the data
-            const data = filterData(searchText, restaturants);
+            let newData = filterData(searchText, allRestaturants);
             //Update the data
-            setRestaurants(data);
-            console.log(data + "data ");
+            setFilteredRestaurant(newData);
           }}
         >
           Search
         </button>
       </div>
       <div className="RestaurantCards">
-        {restaturants.map((restaurant) => {
+        {filteredRestaurant.map((restaurant) => {
           return (
             <RestaurantCards {...restaurant?.data} key={restaurant.data?.id} />
           );
