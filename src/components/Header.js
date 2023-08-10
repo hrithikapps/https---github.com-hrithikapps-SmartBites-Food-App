@@ -1,14 +1,7 @@
+import Logo from "../assets/img/Logo.png";
 import { useState } from "react";
 const Title = () => {
-  return (
-    <a href="/">
-      <img
-        className="logo"
-        src="https://cdn.logojoy.com/wp-content/uploads/2018/05/01105800/298.png"
-        alt="Logo"
-      />
-    </a>
-  );
+  return <a href="/">{<img className="logo" src={Logo} alt="Logo" />}</a>;
 };
 const setIsLoggedIn = () => {
   //Authenticate User

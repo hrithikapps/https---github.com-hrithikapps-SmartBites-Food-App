@@ -1,5 +1,5 @@
 // import RestaurantData from "..components/Constants";
-import { CDN_IMG_ID } from "./constants";
+import { CDN_IMG_ID } from "./Constants";
 
 export const RestaurantCards = ({
   name,
