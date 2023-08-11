@@ -2,7 +2,7 @@ export const Shimmer = () => {
   return (
     <>
       <div className="RestaurantCards">
-        {Array(15)
+        {Array(16)
           .fill("")
           .map((e, index) => (
             <div key={index} className="shimmerCard"></div>
