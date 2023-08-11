@@ -78,3 +78,53 @@ h4 {
   justify-content: space-between;
   margin-top: 0px;
 }
+.filteredRestaurantCard {
+  padding: 2.5rem;
+  margin: 0.5rem;
+  width: 25rem;
+  height: 27rem;
+  border-radius: 0.5rem;
+  border: 1px solid lightgrey;
+  line-height: 0.1rem;
+}
+.filteredRestaurantCard > img {
+  margin: auto;
+  width: 25rem;
+  height: 15rem;
+  border-radius: 0.5rem;
+}
+.filteredRestaurantCard > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.dishes {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  height: fit-content;
+  width: 50rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+}
+.menuItems {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 0.5rem;
+  border: 1px solid lightgrey;
+  /* line-height: 0.9rem; */
+}
+.menuItems > img {
+  width: 15rem;
+  height: 10rem;
+  border-radius: 0.5rem;
+}
+.restaurantMenuPage {
+  display: flex;
+}
