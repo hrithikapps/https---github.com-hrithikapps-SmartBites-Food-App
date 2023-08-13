@@ -40,7 +40,8 @@ const Body = () => {
       "https://www.swiggy.com/dapi/homepage/getCards?lat=18.5362084&lng=73.8939748"
     );
     const json = await data.json();
-    // console.warn(json?.data?.success?.cards[0]?.favourite?.cards);
+    console.log(json);
+    // console.log(json?.data?.success?.cards[0]?.favourite?.cards);
     setFilteredRestaurant(json?.data?.success?.cards[0]?.favourite?.cards);
     setAllRestaurants(json?.data?.success?.cards[0]?.favourite?.cards);
   }
@@ -79,8 +80,11 @@ const Body = () => {
       <div className="RestaurantCards">
         {filteredRestaurant.map((restaurant) => {
           return (
-            <Link to={"./restaurant/"+restaurant.data?.id } key={restaurant?.data?.id}>
-            <RestaurantCards {...restaurant?.data}  />
+            <Link
+              to={"./restaurant/" + restaurant.data?.id}
+              key={restaurant?.data?.id}
+            >
+              <RestaurantCards {...restaurant?.data} />
             </Link>
           );
         })}

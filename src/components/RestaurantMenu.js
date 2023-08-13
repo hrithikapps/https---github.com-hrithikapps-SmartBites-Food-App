@@ -72,14 +72,14 @@ const RestaurantMenu = () => {
             return m.map((insideMenu) => {
               return (
                 <div className="menuItems">
-                  {/* {CDN_IMG_ID + insideMenu?.imageId === undefined ? null : (
+                  {insideMenu?.imageId === undefined ? null : (
                     <img
                       src={CDN_IMG_ID + insideMenu?.imageId}
                       alt="foodImage"
                     />
-                  )} */}
+                  )}
 
-                  <h4>{insideMenu?.name}</h4>
+                  <h5>{insideMenu?.name}</h5>
                   <h4>{insideMenu?.price / 100}</h4>
                 </div>
               );
