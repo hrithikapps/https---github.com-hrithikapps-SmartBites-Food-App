@@ -3,18 +3,7 @@ import { RestaurantCards } from "../components/RestaurantCards";
 import { useState, useEffect } from "react";
 import { Shimmer } from "./Shimmer";
 import { Link } from "react-router-dom";
-
-const filterData = (searchText, allRestaturants) => {
-  console.log(allRestaturants);
-  const data = allRestaturants.filter((restaurant) => {
-    const resName = restaurant?.data?.name
-      ?.toLowerCase()
-      .includes(searchText.toLowerCase());
-    return resName;
-  });
-  // console.log(data + " inside filter data");
-  return data;
-};
+import { filterData } from "../utils/Helper";
 
 // function filterData(searchText, restaurant) {
 //   const filterData = restaurant.filter((restaurants) =>
