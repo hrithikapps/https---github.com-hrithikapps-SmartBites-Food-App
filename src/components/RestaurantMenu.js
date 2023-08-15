@@ -8,10 +8,8 @@ const RestaurantMenu = () => {
 
   const [restaurant, setRestaurant] = useState(null);
   const [menuItems, setmenuItems] = useState(null);
-  // const useEffect=(()=>{
-  //   const {restaurantInfo,menu}=
-  // },restaurant)
 
+  
   useEffect(() => {
     getRestaurants();
   }, []);
@@ -78,7 +76,6 @@ const RestaurantMenu = () => {
                       alt="foodImage"
                     />
                   )}
-
                   <h5>{insideMenu?.name}</h5>
                   <h4>{insideMenu?.price / 100}</h4>
                 </div>
@@ -93,4 +90,3 @@ const RestaurantMenu = () => {
 };
 export default RestaurantMenu;
 
-// map/card/info
