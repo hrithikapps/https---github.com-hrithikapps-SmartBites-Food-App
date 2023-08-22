@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CDN_IMG_ID } from "./Constants";
 import { Shimmer } from "./Shimmer";
+import { LiaRupeeSignSolid } from "react-icons/lia";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
@@ -9,7 +10,6 @@ const RestaurantMenu = () => {
   const [restaurant, setRestaurant] = useState(null);
   const [menuItems, setmenuItems] = useState(null);
 
-  
   useEffect(() => {
     getRestaurants();
   }, []);
@@ -50,34 +50,54 @@ const RestaurantMenu = () => {
   }
   return (
     <>
-      <div className="restaurantMenuPage">
-        <div className="filteredRestaurantCard">
-          <h3>Restaurant id: {id}</h3>
-
-          <img src={CDN_IMG_ID + restaurant.cloudinaryImageId} alt="Image" />
-          <h4>{restaurant.name}</h4>
-          <h6>{restaurant.areaName}</h6>
-          <p>{restaurant?.cuisines?.join(", ")}</p>
+      <div className="flex flex-col ">
+        <p>Restaurant id: {id}</p>
+        <div className="flex justify-around p-4 w-4/5 m-auto items-center ">
+          <div className="flex flex-row items-center">
+            <img
+              className="w-56 h-40 rounded-lg"
+              src={CDN_IMG_ID + restaurant?.cloudinaryImageId}
+              alt="Image"
+            />
+          </div>
+          <div className="ml-3 items-center ">
+            <h4 className="text-2xl font-bold">{restaurant.name}</h4>
+            <h6 className="font-thin">{restaurant.areaName}</h6>
+            <p>{restaurant?.cuisines?.join(", ")}</p>
+          </div>
           <div>
-            <h6>Cost For Two: {restaurant?.costForTwoMessage}</h6>
-            <h6>{restaurant?.avgRating} stars</h6>
+            <h6 className="font-bold">{restaurant?.avgRating} stars</h6>
+            <h6 className="font-thin">{restaurant?.costForTwoMessage}</h6>
           </div>
         </div>
-        <div className="dishes">
+        <div className="flex flex-col w-2/4 m-auto p-4  gap-1">
           {menuItems?.map((m) => {
             console.log(m);
+            {
+              key = menuItems?.id;
+            }
 
             return m.map((insideMenu) => {
               return (
-                <div className="menuItems">
+                <div className=" flex flex-row gap-1 p-2  max-h-36 m-3  items-center relative bg-slate-50 rounded-lg ">
+                  <div className="w-3/4">
+                    <h5 className="font-bold">{insideMenu?.name}</h5>
+                    <p className="font-thin text-xs">
+                      {insideMenu?.description}
+                    </p>
+                    <h4 className="flex flex-row items-center mt-1">
+                      <LiaRupeeSignSolid />
+                      {Math.round(insideMenu?.price / 100)}
+                    </h4>
+                  </div>
                   {insideMenu?.imageId === undefined ? null : (
                     <img
+                      className="w-32 h-24 absolute  rounded-lg right-0 "
                       src={CDN_IMG_ID + insideMenu?.imageId}
                       alt="foodImage"
                     />
                   )}
-                  <h5>{insideMenu?.name}</h5>
-                  <h4>{insideMenu?.price / 100}</h4>
+                  <hr className="bg-slate-600" />
                 </div>
               );
               // return <p>{insideMenu?.name}</p>;
@@ -89,4 +109,3 @@ const RestaurantMenu = () => {
   );
 };
 export default RestaurantMenu;
-

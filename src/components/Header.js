@@ -2,7 +2,11 @@ import Logo from "../assets/img/Logo.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 const Title = () => {
-  return <a href="/">{<img className="logo" src={Logo} alt="Logo" />}</a>;
+  return (
+    <a className="h-24 p-2 " href="/">
+      {<img className="h-20 p-2 " src={Logo} alt="Logo" />}
+    </a>
+  );
 };
 const setIsLoggedIn = () => {
   //Authenticate User
@@ -12,9 +16,9 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <div className="nav-items">
+    <div className="flex justify-between items-center pr-16 bg-slate-100">
       <Title />
-      <ul>
+      <ul className="flex gap-5">
         {/* <li><a href="">Home</a></li>
             <li><a href="">About</a></li>
             <li><a href="">Contact Us</a></li>
