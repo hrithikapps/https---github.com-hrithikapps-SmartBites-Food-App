@@ -1,3 +1,4 @@
 # SmartBites-A-Food-App
-# Start : npx run start/ npx start
+
+Start : npx run start/ npx start
 
