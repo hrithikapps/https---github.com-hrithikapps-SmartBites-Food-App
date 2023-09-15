@@ -19,13 +19,23 @@ const Body = () => {
 
   async function getRestaurants() {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/homepage/getCards?lat=18.5362084&lng=73.8939748"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5679146&lng=73.91434319999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5362084&lng=73.8939748&page_type=DESKTOP_WEB_LISTING"
+      // "https://www.swiggy.com/dapi/homepage/getCards?lat=18.5362084&lng=73.8939748"
     );
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
+    console.log(
+      json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    const dataArray =
+      json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    //
     // console.log(json?.data?.success?.cards[0]?.favourite?.cards);
-    setFilteredRestaurant(json?.data?.success?.cards[0]?.favourite?.cards);
-    setAllRestaurants(json?.data?.success?.cards[0]?.favourite?.cards);
+    setAllRestaurants(dataArray);
+    setFilteredRestaurant(dataArray);
+    // setFilteredRestaurant(json?.data?.success?.cards[0]?.favourite?.cards);
+    // setAllRestaurants(json?.data?.success?.cards[0]?.favourite?.cards);
   }
 
   const isOnline = useOnline();
@@ -72,10 +82,10 @@ const Body = () => {
         {filteredRestaurant.map((restaurant) => {
           return (
             <Link
-              to={"./restaurant/" + restaurant.data?.id}
-              key={restaurant?.data?.id}
+              to={"./restaurant/" + restaurant.info?.id}
+              key={restaurant?.info?.id}
             >
-              <RestaurantCards {...restaurant?.data} />
+              <RestaurantCards {...restaurant?.info} />
             </Link>
           );
         })}

@@ -25,10 +25,9 @@ const RestaurantMenu = () => {
     //   `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5362084&lng=73.8939748&restaurantId=${id}`
     // );
     const result = await data.json();
-    // console.log(result.data.cards);
-    // console.log(result.data.cards[0].card.card.info);
     setRestaurant(result.data?.cards[0]?.card?.card?.info);
     // const menu = result?.data?.cards[2]?.groupedCard.cardGroupMap.REGULAR.cards;
+    console.log("menu"+result?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
     const menu =
       result?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
         .map((c) => c.card?.card)
