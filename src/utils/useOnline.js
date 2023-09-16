@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 const useOnline = () => {
   const [isOnline, setIsOnline] = useState(true);
 
@@ -10,19 +11,17 @@ const useOnline = () => {
       setIsOnline(false);
     };
 
-    document.addEventListener("online", (event) => {
-      handleOnline();
-    });
-    document.addEventListener("offline", (event) => {
-      handleOffline();
-    });
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    // Removing Event Listners in Component will Unmount
 
     return () => {
       window.removeEventListener("online", handleOnline);
       window.removeEventListener("offline", handleOffline);
     };
   }, []);
-
+  console.log("isOnline", isOnline);
   return isOnline; //Returns True/False
 };
 export default useOnline;
