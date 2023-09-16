@@ -7,6 +7,7 @@ import Cart from "./src/components/Cart";
 import Error from "./src/components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./src/components/RestaurantMenu";
+import { Shimmer } from "./src/components/Shimmer";
 // import Profile from "./src/components/Profile";
 // import About from "./src/components/About";
 // import ContactUs from "./src/components/ContactUs";
@@ -60,7 +61,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/contactUs",
         element: (
-          <Suspense fallback={<Shimmer />}>
+          <Suspense fallback={<Shimmer/>}>
             <ContactUs />
           </Suspense>
         ),
