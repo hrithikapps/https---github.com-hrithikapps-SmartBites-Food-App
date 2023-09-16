@@ -10,7 +10,10 @@ import RestaurantMenu from "./src/components/RestaurantMenu";
 // import Profile from "./src/components/Profile";
 // import About from "./src/components/About";
 // import ContactUs from "./src/components/ContactUs";
-
+//Lazy Loading 
+//Chunking 
+//Dynamic Import 
+//on demand Loading / Code Splitting
 const Profile = lazy(() => import("./src/components/Profile"));
 const ContactUs = lazy(() => import("./src/components/ContactUs"));
 const About = lazy(() => import("./src/components/About"));
@@ -39,7 +42,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <Suspense fallback={<h1>Loading...</h1>}>
+          <Suspense fallback={<Shimmer />}>
             <About />
           </Suspense>
         ),
@@ -47,7 +50,7 @@ const appRouter = createBrowserRouter([
           {
             path: "profile",
             element: (
-              <Suspense>
+              <Suspense fallback={<Shimmer />}>
                 <Profile />
               </Suspense>
             ),
@@ -57,7 +60,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/contactUs",
         element: (
-          <Suspense>
+          <Suspense fallback={<Shimmer />}>
             <ContactUs />
           </Suspense>
         ),
