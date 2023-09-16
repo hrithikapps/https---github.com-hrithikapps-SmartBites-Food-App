@@ -12,31 +12,51 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
+    console.log("rendered use effect ");
     getRestaurants();
   }, []);
 
   //API call to swiggy.com/Swiggy's API
 
-  async function getRestaurants() {
-    const data = await fetch(
+  const getRestaurants = async () => {
+    console.log("called get restaurant");
+    let data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5679146&lng=73.91434319999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5362084&lng=73.8939748&page_type=DESKTOP_WEB_LISTING"
-      // "https://www.swiggy.com/dapi/homepage/getCards?lat=18.5362084&lng=73.8939748"
     );
-    const json = await data.json();
-    // console.log(json);
-    console.log(
-      json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+
+    // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5362084&lng=73.8939748&page_type=DESKTOP_WEB_LISTING"
+    // "https://www.swiggy.com/dapi/homepage/getCards?lat=18.5362084&lng=73.8939748"
+    let response = await data.json();
+
+    // console.log("fetched" + json.data?.cards[3]?.card?.card?.gridElements);
+
+
+    //Swiggy Daylight API Data
+    const dataArray2 =
+      response.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+
+
+    //Swiggy Night API data
     const dataArray =
-      json.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    //
+      response.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+
     // console.log(json?.data?.success?.cards[0]?.favourite?.cards);
-    setAllRestaurants(dataArray);
-    setFilteredRestaurant(dataArray);
+
+    //Conditional Rendering of data from API
+    if (dataArray !== undefined) {
+      setFilteredRestaurant(dataArray);
+      setAllRestaurants(dataArray);
+    } else {
+      setFilteredRestaurant(dataArray2);
+      setAllRestaurants(dataArray2);
+    }
+
     // setFilteredRestaurant(json?.data?.success?.cards[0]?.favourite?.cards);
     // setAllRestaurants(json?.data?.success?.cards[0]?.favourite?.cards);
-  }
+    console.log(dataArray2);
+  };
 
   const isOnline = useOnline();
   if (!isOnline)

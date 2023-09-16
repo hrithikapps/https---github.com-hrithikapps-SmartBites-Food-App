@@ -10,8 +10,12 @@ const useOnline = () => {
       setIsOnline(false);
     };
 
-    document.addEventListener("online", handleOnline);
-    document.addEventListener("offline", handleOffline);
+    document.addEventListener("online", (event) => {
+      handleOnline();
+    });
+    document.addEventListener("offline", (event) => {
+      handleOffline();
+    });
 
     return () => {
       window.removeEventListener("online", handleOnline);

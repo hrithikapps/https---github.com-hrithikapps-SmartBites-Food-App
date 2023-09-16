@@ -7,7 +7,7 @@ export const Shimmer = () => {
           .map((e, index) => (
             <div
               key={index}
-              className="h-40 w-40 bg-slate-200 rounded-md "
+              className="h-40 w-52 bg-slate-200 rounded-md mt-3"
             ></div>
           ))}
       </div>
