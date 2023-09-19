@@ -19,10 +19,10 @@ const RestaurantMenu = () => {
   const [menuItems, setmenuItems] = useState(null);
 
   useEffect(() => {
-    getRestaurants();
+    getRestaurant();
   }, []);
 
-  getRestaurants = async () => {
+  const getRestaurant = async () => {
     const data = await fetch(
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5362084&lng=73.8939748&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     );
@@ -94,7 +94,10 @@ const RestaurantMenu = () => {
                 key = insideMenu.id;
               }
               return (
-                <div className=" flex flex-row gap-1 p-2  max-h-36 m-3  items-center relative bg-slate-50 rounded-lg ">
+                <div
+                  key={insideMenu.id}
+                  className=" flex flex-row gap-1 p-2  max-h-36 m-3  items-center relative bg-slate-50 rounded-lg "
+                >
                   <div className="w-3/4">
                     <h5 className="font-bold">{insideMenu?.name}</h5>
                     <p className="font-thin text-xs">

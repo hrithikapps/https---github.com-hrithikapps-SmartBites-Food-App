@@ -12,11 +12,11 @@ const cartSlice = createSlice({
     removeItem: (state, action) => {
       state.items.pop();
     },
-    emptyItem: (state, action) => {
+    clearCart: (state, action) => {
       state.items = [];
     },
   },
 });
-export const { addItem, removeItem, emptyItem } = cartSlice.actions;
+export const { addItem, removeItem, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

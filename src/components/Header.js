@@ -5,7 +5,7 @@ import useOnline from "../utils/useOnline";
 import { useSelector } from "react-redux";
 const Title = () => {
   return (
-    <a className="h-24 p-2 " href="/">
+    <a className="h-20 pl-10" href="/">
       {<img className="h-20 p-2 " src={Logo} alt="Logo" />}
     </a>
   );
