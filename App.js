@@ -8,6 +8,8 @@ import Error from "./src/components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import { Shimmer } from "./src/components/Shimmer";
+import { Provider } from "react-redux";
+import store from "./src/utils/store";
 // import Profile from "./src/components/Profile";
 // import About from "./src/components/About";
 // import ContactUs from "./src/components/ContactUs";
@@ -21,12 +23,12 @@ const About = lazy(() => import("./src/components/About"));
 
 const AppLayout = () => {
   return (
-    <>
+    <Provider store={store}>
       <Header />
       {/* All the children will go into the outlet according to the routes */}
       <Outlet />
       <Footer />
-    </>
+    </Provider>
   );
 };
 

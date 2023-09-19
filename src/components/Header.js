@@ -1,6 +1,8 @@
 import Logo from "../assets/img/Logo.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/useOnline";
+import { useSelector } from "react-redux";
 const Title = () => {
   return (
     <a className="h-24 p-2 " href="/">
@@ -14,6 +16,11 @@ const setIsLoggedIn = () => {
 };
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const isOnline = useOnline();
+
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <div className="flex justify-between items-center pr-16 bg-slate-100">
@@ -33,7 +40,12 @@ const Header = () => {
           <Link to="/contactUs">Contact Us</Link>
         </li>
         <li>
-          <Link to="/cart">Cart</Link>
+          <Link to="/cart">
+            Cart{" "}
+            <sup className=" text-white pl-2 pt-0.5 pb-0.5  pr-2 bg-orange-600 rounded-full text-base ">
+              {cartItems.length}
+            </sup>{" "}
+          </Link>
         </li>
       </ul>
       {isLoggedIn === true ? (

@@ -3,9 +3,17 @@ import { useParams } from "react-router-dom";
 import { CDN_IMG_ID } from "./Constants";
 import { Shimmer } from "./Shimmer";
 import { LiaRupeeSignSolid } from "react-icons/lia";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
 
   const [restaurant, setRestaurant] = useState(null);
   const [menuItems, setmenuItems] = useState(null);
@@ -18,20 +26,27 @@ const RestaurantMenu = () => {
     const data = await fetch(
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5362084&lng=73.8939748&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     );
-    // const data = await fetch(
+    // const data2 = await fetch(
     //   `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5362084&lng=73.8939748&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     // );
     // const data = await fetch(
     //   `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5362084&lng=73.8939748&restaurantId=${id}`
     // );
+
     const result = await data.json();
+    // const result2 = await data2.json();
+    // const result = result1 == undefined ? result2 : result1;
     setRestaurant(result.data?.cards[0]?.card?.card?.info);
     // const menu = result?.data?.cards[2]?.groupedCard.cardGroupMap.REGULAR.cards;
-    console.log("menu"+result?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
+    // console.log(
+    //   "menu" + result?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+    // );
+    // console.log("menu2" + result2);
     const menu =
       result?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
         .map((c) => c.card?.card)
-        .filter((x) => {
+        .filter((x, index) => {
+          key = index;
           return (
             x["@type"] ==
             "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
@@ -41,9 +56,10 @@ const RestaurantMenu = () => {
     // console.log(menu);
     const item = menu?.map((x) => x.itemCards.map((y) => y.card.info));
 
-    // console.log(item);
+    console.log("item" + item?.info?.id);
     setmenuItems(item);
   };
+
   if (!restaurant) {
     return <Shimmer />;
   }
@@ -70,13 +86,13 @@ const RestaurantMenu = () => {
           </div>
         </div>
         <div className="flex flex-col w-2/4 m-auto p-4  gap-1">
-          {menuItems?.map((m) => {
-            console.log(m);
-            {
-              key = menuItems?.id;
-            }
-
+          {menuItems?.map((m, index) => {
+            key = { index };
             return m.map((insideMenu) => {
+              {
+                // console.log("insideMenu" + insideMenu.id);
+                key = insideMenu.id;
+              }
               return (
                 <div className=" flex flex-row gap-1 p-2  max-h-36 m-3  items-center relative bg-slate-50 rounded-lg ">
                   <div className="w-3/4">
@@ -86,8 +102,17 @@ const RestaurantMenu = () => {
                     </p>
                     <h4 className="flex flex-row items-center mt-1">
                       <LiaRupeeSignSolid />
-                      {Math.round(insideMenu?.price / 100)}
+
+                      {isNaN(Math.round(insideMenu?.price / 100))
+                        ? Math.round(insideMenu.defaultPrice / 100)
+                        : Math.round(insideMenu?.price / 100)}
                     </h4>
+                    <button
+                      onClick={() => handleAddItem(insideMenu)}
+                      className="p-2 rounded-md bg-orange-600 text-white text-center font-thin text-sm"
+                    >
+                      Add Item
+                    </button>
                   </div>
                   {insideMenu?.imageId === undefined ? null : (
                     <img
@@ -96,6 +121,7 @@ const RestaurantMenu = () => {
                       alt="foodImage"
                     />
                   )}
+
                   <hr className="bg-slate-600" />
                 </div>
               );

@@ -24,7 +24,7 @@ export const RestaurantCards = ({
       <div className="flex justify-between m-3 bottom-0">
         <h5 className="text-sm font-semibold flex justify-center items-center">
           {avgRating} <AiFillStar />
-        </h5>
+        </h5 >
         <h6 className="text-sm  "> {costForTwo}</h6>
       </div>
     </div>
