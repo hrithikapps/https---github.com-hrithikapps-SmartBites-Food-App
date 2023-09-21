@@ -43,9 +43,9 @@ export const CartMenu = ({
               >
                 -
               </button>
-              {numberOfIndividualItems(cartItems, id).length == 0
+              {/* {numberOfIndividualItems(cartItems, id).length == 0
                 ? 0
-                : numberOfIndividualItems(cartItems, id).length}
+                : numberOfIndividualItems(cartItems, id).length} */}
               <button
                 type="button"
                 className="text-orange-600 hover:text-white border border-orange-600 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-600 font-bold rounded-md text-xl px-4 py-1 text-center mr-2 mb-2 dark:border-orange-600 dark:text-orange-600 dark:hover:text-white dark:hover:bg-orange-600 dark:focus:ring-orange-600"
