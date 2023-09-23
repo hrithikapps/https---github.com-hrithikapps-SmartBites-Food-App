@@ -70,17 +70,17 @@ const RestaurantMenu = () => {
   return (
     <>
       <div className="flex flex-col ">
-        <p>Restaurant id: {id}</p>
+        {/* <p>Restaurant id: {id}</p> */}
         <div className="flex justify-around p-4 w-4/5 m-auto items-center ">
           <div className="flex flex-row items-center">
             <img
-              className="w-56 h-40 rounded-lg"
+              className="w-52 h-32 rounded-lg"
               src={CDN_IMG_ID + restaurant?.cloudinaryImageId}
               alt="Image"
             />
           </div>
           <div className="ml-3 items-center ">
-            <h4 className="text-2xl font-bold">{restaurant.name}</h4>
+            <h4 className="text-xl font-bold">{restaurant.name}</h4>
             <h6 className="font-thin">{restaurant.areaName}</h6>
             <p>{restaurant?.cuisines?.join(", ")}</p>
           </div>
@@ -103,7 +103,7 @@ const RestaurantMenu = () => {
                   className=" flex flex-row gap-1 p-2  max-h-36 m-3  items-center relative bg-slate-50 rounded-lg "
                 >
                   <div className="w-3/4">
-                    <h5 className="font-bold">{insideMenu?.name}</h5>
+                    <h5 className="font-semibold">{insideMenu?.name}</h5>
                     <p className="font-thin text-xs">
                       {insideMenu?.description}
                     </p>
@@ -116,7 +116,7 @@ const RestaurantMenu = () => {
                     </h4>
                     <button
                       onClick={() => handleAddItem(insideMenu)}
-                      className="p-2 rounded-md bg-orange-600 text-white text-center font-thin text-sm"
+                      className="px-3 py-1 rounded-md bg-orange-600 text-white text-center font-thin text-sm hover:bg-orange-700"
                     >
                       Add Item
                     </button>

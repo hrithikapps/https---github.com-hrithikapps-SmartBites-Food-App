@@ -30,12 +30,10 @@ const Body = () => {
 
     // console.log("fetched" + json.data?.cards[3]?.card?.card?.gridElements);
 
-
     //Swiggy Daylight API Data
     const dataArray2 =
       response.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
-
 
     //Swiggy Night API data
     const dataArray =
@@ -87,7 +85,7 @@ const Body = () => {
           }}
         />
         <button
-          className="bg-[#dd6555] text-white px-5 py-1 items-center rounded-lg font-medium text-lg"
+          className="bg-orange-600 text-white px-5 py-1 items-center rounded-lg font-medium text-lg"
           onClick={() => {
             //Need to filter the data
             let newData = filterData(searchText, allRestaturants);
