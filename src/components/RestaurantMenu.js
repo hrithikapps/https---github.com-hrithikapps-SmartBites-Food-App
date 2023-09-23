@@ -12,6 +12,7 @@ const RestaurantMenu = () => {
   const dispatch = useDispatch();
 
   const handleAddItem = (item) => {
+    item.hasOwnProperty("qty") ? item.qty++ : (item.qty = 1);
     dispatch(addItem(item));
   };
 
@@ -31,9 +32,12 @@ const RestaurantMenu = () => {
     // );
     // const data = await fetch(
     //   `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5362084&lng=73.8939748&restaurantId=${id}`
+
     // );
 
     const result = await data.json();
+    console.log("data", result);
+    // if(response == )
     // const result2 = await data2.json();
     // const result = result1 == undefined ? result2 : result1;
     setRestaurant(result.data?.cards[0]?.card?.card?.info);

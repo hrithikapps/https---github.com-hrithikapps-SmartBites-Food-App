@@ -26,10 +26,6 @@ const Header = () => {
     <div className="flex justify-between items-center pr-16 bg-slate-100">
       <Title />
       <ul className="flex gap-5">
-        {/* <li><a href="">Home</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="">Contact Us</a></li>
-            <li><a href="">Cart</a></li> */}
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -43,7 +39,9 @@ const Header = () => {
           <Link to="/cart">
             Cart{" "}
             <sup className=" text-white pl-2 pt-0.5 pb-0.5  pr-2 bg-orange-600 rounded-full text-base ">
-              {cartItems.length}
+              {cartItems.reduce((acc, item) => {
+                return acc + item.qty;
+              }, 0)}
             </sup>{" "}
           </Link>
         </li>
