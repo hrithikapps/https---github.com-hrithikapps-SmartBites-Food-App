@@ -30,7 +30,7 @@ To run FoodSale locally, you need to have Node.js installed on your machine. You
 1. Clone the repo
 
 ```bash
-git clone https://github.com/DineshRout779/FoodHunt
+https://github.com/hrithikapps/https---github.com-hrithikapps-SmartBites-Food-App.git
 ```
 
 2. Install dependencies
