@@ -25,4 +25,22 @@ Start : npx run start/ npx start
 
 To run FoodSale locally, you need to have Node.js installed on your machine. You can download it from the official Node.js website: [https://nodejs.org](https://nodejs.org)
 
-### Installation
+## How to use
+
+1. Clone the repo
+
+```bash
+https://github.com/hrithikapps/https---github.com-hrithikapps-SmartBites-Food-App.git
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Start the dev server
+
+```bash
+npm start
+```
