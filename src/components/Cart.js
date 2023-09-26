@@ -6,6 +6,7 @@ import { removeItem } from "../utils/cartSlice";
 import { handleDecrement } from "../utils/cartSlice";
 import { handleIncrement } from "../utils/cartSlice";
 
+//Subscribing my store
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
@@ -16,6 +17,10 @@ const Cart = () => {
   const price = cartItems.reduce((acc, curr) => {
     return acc + curr.qty * (curr.price / 100);
   }, 0);
+
+  if (cartItems.length == 0) {
+    return <div className="font-semibold m-auto">Cart is Empty</div>;
+  }
 
   return (
     <>
