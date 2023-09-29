@@ -1,6 +1,9 @@
 export const CDN_IMG_ID =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
+export const CLIENT_ID =
+  "918105211798-444ceo6i1h057bae60sgduopeo63t09f.apps.googleusercontent.com";
+
 export const RestaurantData = [
   {
     data: {

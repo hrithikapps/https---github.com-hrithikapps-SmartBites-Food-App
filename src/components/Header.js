@@ -3,6 +3,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import { useSelector } from "react-redux";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { CLIENT_ID } from "./Constants";
+import jwt_decode from "jwt-decode";
+
 const Title = () => {
   return (
     <a className="h-20 pl-10" href="/">
@@ -10,12 +14,19 @@ const Title = () => {
     </a>
   );
 };
-const setIsLoggedIn = () => {
-  //Authenticate User
-  return true;
-};
+
+// const setIsLoggedIn = () => {
+//   //Authenticate User
+//   return true;
+// };
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
+
+  const handleLogout = () => {
+    setUser({});
+  };
+
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const isOnline = useOnline();
 
@@ -46,10 +57,27 @@ const Header = () => {
           </Link>
         </li>
       </ul>
-      {isLoggedIn === true ? (
+      {/* {isLoggedIn === true ? (
         <button onClick={() => setIsLoggedIn(false)}>Logout</button>
       ) : (
         <button onClick={() => setIsLoggedIn(true)}>Login</button>
+      )} */}
+      {Object.keys(user).length != 0 && (
+        <button onClick={() => handleLogout()}>Logout</button>
+      )}
+      {Object.keys(user).length == 0 && (
+        <GoogleOAuthProvider clientId={CLIENT_ID}>
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              var decodedUserObject = jwt_decode(credentialResponse.credential);
+              setUser(decodedUserObject);
+              console.log(decodedUserObject);
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
+          />
+        </GoogleOAuthProvider>
       )}
     </div>
   );

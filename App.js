@@ -46,7 +46,7 @@ const appRouter = createBrowserRouter([
         path: "/about",
         element: (
           <Suspense fallback={<Shimmer />}>
-            <About />
+            <About/>
           </Suspense>
         ),
         children: [
