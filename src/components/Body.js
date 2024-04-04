@@ -10,50 +10,124 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [allRestaturants, setAllRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [locationError, setLocationError] = useState(null);
+  const [latitude, setLatitude] = useState(18.5679146);
+  const [longitude, setLongitude] = useState(73.91434319999999);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [dataArray, setDataArray] = useState([]);
+  const [dataArray2, setDataArray2] = useState([]);
+  const [dataArray3, setDataArray3] = useState([]);
 
   useEffect(() => {
-    console.log("rendered use effect ");
-    getRestaurants();
+    console.log("rendered use effect");
+    fetchLocationAndRestaurants();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+      //Conditional rendered data for large screens and smaller screens
+      renderData();
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [screenWidth]);
+
+  useEffect(() => {
+    renderData();
+  }, [dataArray, dataArray2, dataArray3]);
+
+  //get geoLocation
+  const fetchLocationAndRestaurants = () => {
+    // Using navigator.geolocation to get user's current position
+    if (navigator.geolocation) {
+      console.log("+++", navigator);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          let { latitude, longitude } = position.coords;
+          console.warn("Lat Long", latitude, longitude);
+          setLatitude(latitude);
+          longitude = `${longitude}9999999`;
+          setLongitude(Number(longitude));
+          console.log("longitude", longitude);
+          getRestaurants(latitude, longitude);
+        },
+        (error) => {
+          console.error("Error getting user location:", error);
+          setLocationError(
+            "Please enable location access to view nearby restaurants."
+          );
+          getRestaurants(latitude, longitude);
+        }
+      );
+    } else {
+      getRestaurants(latitude, longitude);
+      console.error("Geolocation is not supported by this browser.");
+      setLocationError("Geolocation is not supported by your browser.");
+    }
+  };
+
   //API call to swiggy.com/Swiggy's API
-
-  const getRestaurants = async () => {
+  const getRestaurants = async (latitude, longitude) => {
     console.log("called get restaurant");
-    let data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5679146&lng=73.91434319999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    try {
+      let data = await fetch(
+        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+      );
 
-    // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5362084&lng=73.8939748&page_type=DESKTOP_WEB_LISTING"
-    // "https://www.swiggy.com/dapi/homepage/getCards?lat=18.5362084&lng=73.8939748"
-    let response = await data.json();
+      // "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5362084&lng=73.8939748&page_type=DESKTOP_WEB_LISTING"
+      // "https://www.swiggy.com/dapi/homepage/getCards?lat=18.5362084&lng=73.8939748"
+      let response = await data.json();
 
-    // console.log("fetched" + json.data?.cards[3]?.card?.card?.gridElements);
+      console.warn("response", response.data.cards);
 
-    //Swiggy Daylight API Data
-    const dataArray2 =
-      response.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
+      //Swiggy Night API data
+      setDataArray(
+        response.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
 
-    //Swiggy Night API data
-    const dataArray =
-      response.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
+      //Swiggy Daylight API Data
+      setDataArray2(
+        response.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
 
-    // console.log(json?.data?.success?.cards[0]?.favourite?.cards);
+      //Fallback for large Screens
+      setDataArray3(
+        response.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
 
-    //Conditional Rendering of data from API
-    if (dataArray !== undefined) {
+      // setFilteredRestaurant(json?.data?.success?.cards[0]?.favourite?.cards);
+      // setAllRestaurants(json?.data?.success?.cards[0]?.favourite?.cards);
+    } catch (error) {
+      console.error("Error fetching restaurants:", error);
+    }
+  };
+
+  const renderData = () => {
+    if (dataArray3) {
+      alert("called3");
+      setFilteredRestaurant(dataArray3);
+      setAllRestaurants(dataArray3);
+    } else if (dataArray) {
+      alert("called1");
       setFilteredRestaurant(dataArray);
       setAllRestaurants(dataArray);
-    } else {
+    } else if (dataArray2) {
+      alert("called2");
       setFilteredRestaurant(dataArray2);
       setAllRestaurants(dataArray2);
     }
 
-    // setFilteredRestaurant(json?.data?.success?.cards[0]?.favourite?.cards);
-    // setAllRestaurants(json?.data?.success?.cards[0]?.favourite?.cards);
-    console.log(dataArray2);
+    console.log("dataArray", dataArray);
+    console.log("dataArray2", dataArray2);
+    console.log("dataArray3", dataArray3);
   };
 
   const isOnline = useOnline();
