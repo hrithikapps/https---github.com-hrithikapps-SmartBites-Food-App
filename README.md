@@ -2,6 +2,8 @@
 
 Start : npx run start/ npx start
 
+##Deploy Link : https-github-com-hrithikapps-smart-bites-food-app.vercel.app
+
 ## Features
 
 - Utilization of Swiggy's live API data to fetch real-time restaurant information
