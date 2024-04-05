@@ -112,15 +112,12 @@ const Body = () => {
 
   const renderData = () => {
     if (dataArray3) {
-      alert("called3");
       setFilteredRestaurant(dataArray3);
       setAllRestaurants(dataArray3);
     } else if (dataArray) {
-      alert("called1");
       setFilteredRestaurant(dataArray);
       setAllRestaurants(dataArray);
     } else if (dataArray2) {
-      alert("called2");
       setFilteredRestaurant(dataArray2);
       setAllRestaurants(dataArray2);
     }
