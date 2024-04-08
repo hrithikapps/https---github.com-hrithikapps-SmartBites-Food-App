@@ -5,7 +5,7 @@ import { Shimmer } from "./Shimmer";
 import { LiaRupeeSignSolid } from "react-icons/lia";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
-import axios, * as others from "axios";
+import axios from "axios";
 
 const RestaurantMenu = () => {
   const { id } = useParams();
