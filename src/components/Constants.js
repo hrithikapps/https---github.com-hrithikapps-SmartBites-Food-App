@@ -4,6 +4,8 @@ export const CDN_IMG_ID =
 export const CLIENT_ID =
   "918105211798-444ceo6i1h057bae60sgduopeo63t09f.apps.googleusercontent.com";
 
+export const EMAIL_TO = "krk2765@gmail.com";
+
 export const RestaurantData = [
   {
     data: {
@@ -1161,4 +1163,3 @@ export const RestaurantData = [
     },
   },
 ];
-export default RestaurantData;

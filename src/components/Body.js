@@ -1,5 +1,5 @@
 import { RestaurantCards } from "../components/RestaurantCards";
-// import RestaurantData from "./constants";
+// import {RestaurantData} from "./constants";
 import { useState, useEffect } from "react";
 import { Shimmer } from "./Shimmer";
 import { Link } from "react-router-dom";
